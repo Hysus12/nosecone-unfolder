@@ -10,6 +10,11 @@ An offline nose-cone/transition template tool (runs by opening `index.html` dire
 - Preview page layout and export `SVG`, `PDF`, and `ZIP`
 - Run fully offline with `file://`
 
+## Latest fixes (v0.1.1)
+- ORK import now uses OpenRocket units correctly (`m -> mm`)
+- ORK import focuses on `nosecone` only; transition components are ignored
+- Nose-cone shoulder dimensions are mapped from ORK `aftshoulder*` fields
+- Default classroom values updated: `Segment count = 3`, `Sample count = 6`
 ## Quick start
 1. Install Node.js 18+
 2. In project root, run:
