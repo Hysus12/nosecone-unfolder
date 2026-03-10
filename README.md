@@ -40,9 +40,9 @@ For students:
 ## Photos
 The first three images are real build photos. The fourth image is the Newsletter 410 reference page.
 
-<img src="docs/images/01-real-build-segmented.jpg" alt="Real build 1: segmented shell test" width="50%" />
-<img src="docs/images/02-real-build-ribs-discs.jpg" alt="Real build 2: internal support structure" width="50%" />
 <img src="docs/images/03-real-print-templates.jpg" alt="Real build 3: printed templates" width="50%" />
+<img src="docs/images/02-real-build-ribs-discs.jpg" alt="Real build 2: internal support structure" width="50%" />
+<img src="docs/images/01-real-build-segmented.jpg" alt="Real build 1: segmented shell test" width="50%" />
 <img src="docs/images/04-newsletter410-reference.jpg" alt="Reference 4: Newsletter 410 page" width="50%" />
 
 For technical details, see [architecture.md](./architecture.md).
