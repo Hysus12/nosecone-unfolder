@@ -1,7 +1,7 @@
-﻿import type { NoseConeSpec } from '../models/types';
+import type { NoseConeSpec } from '../models/types';
 
 export const DEFAULT_SPEC: NoseConeSpec = {
-  title: '教室分段鼻錐',
+  title: '\u6559\u5ba4\u5206\u6bb5\u9f3b\u9310',
   componentKind: 'nose_cone',
   shapeType: 'tangent_ogive',
   baseDiameterMm: 50,
@@ -13,8 +13,8 @@ export const DEFAULT_SPEC: NoseConeSpec = {
     wallThicknessMm: 0.8,
     discOffsetMm: 8
   },
-  sampleCount: 80,
-  segmentCount: 12,
+  sampleCount: 6,
+  segmentCount: 3,
   ribCount: 2,
   intermediateDiscCount: 3,
   materialThicknessMm: 1.5,
