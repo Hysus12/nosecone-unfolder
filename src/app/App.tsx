@@ -13,6 +13,8 @@ import { PieceList } from '../components/PieceList';
 import { ValidationPanel } from '../components/ValidationPanel';
 import { getUiText, type UiLanguage } from './i18n';
 
+const APP_VERSION = 'v0.1.3';
+
 function downloadBlob(fileName: string, bytes: BlobPart, mimeType: string): void {
   const blob = new Blob([bytes], { type: mimeType });
   const url = URL.createObjectURL(blob);
@@ -53,7 +55,7 @@ export function App(): JSX.Element {
     if (language === 'en') {
       return `${project.segments.length} shrouds | ${project.pieces.length} pieces | ${project.pages.length} pages`;
     }
-    return `${project.segments.length} 段外殼 | ${project.pieces.length} 個零件 | ${project.pages.length} 頁`;
+    return `${project.segments.length} \u6bb5\u5916\u6bbc | ${project.pieces.length} \u500b\u96f6\u4ef6 | ${project.pages.length} \u9801`;
   }, [language, project]);
 
   const handleOrkImport = async (file: File) => {
@@ -153,6 +155,8 @@ export function App(): JSX.Element {
           </div>
         </div>
       </section>
+
+      <div className="version-badge">{APP_VERSION}</div>
     </main>
   );
 }
