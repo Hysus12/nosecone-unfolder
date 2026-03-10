@@ -53,7 +53,7 @@ export function App(): JSX.Element {
     if (language === 'en') {
       return `${project.segments.length} shrouds | ${project.pieces.length} pieces | ${project.pages.length} pages`;
     }
-    return `${project.segments.length} ¬q¥~´ß | ${project.pieces.length} ­Ó¹s¥ó | ${project.pages.length} ­¶`;
+    return `${project.segments.length} æ®µå¤–æ®¼ | ${project.pieces.length} å€‹é›¶ä»¶ | ${project.pages.length} é `;
   }, [language, project]);
 
   const handleOrkImport = async (file: File) => {

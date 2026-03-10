@@ -50,8 +50,8 @@ export function renderSvgPages(
     const pageMetaText =
       language === 'en'
         ? `${escapeXml(meta.title)} | Page ${page.index + 1} | ${escapeXml(meta.units)}`
-        : `${escapeXml(meta.title)} | ≤ƒ ${page.index + 1} ≠∂ | ${escapeXml(meta.units)}`;
-    const calibrationText = language === 'en' ? '20 mm calibration' : '20 mm Æ’•ø';
+        : `${escapeXml(meta.title)} | Á¨¨ ${page.index + 1} È†Å | ${escapeXml(meta.units)}`;
+    const calibrationText = language === 'en' ? '20 mm calibration' : '20 mm Ê†°Ê≠£';
 
     const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${width}mm" height="${height}mm" viewBox="0 0 ${width} ${height}">
