@@ -10,19 +10,27 @@ import { validateSpec } from '../utils/validation';
 
 function buildBackingStrip(segmentIndex: number, seamLengthMm: number, widthMm: number): BackingStripSpec {
   const stripLengthMm = Math.max(6, seamLengthMm - 1.5);
-  const labelWidthEstimateMm = Math.max(8, `BS-${segmentIndex + 1}`.length * 1.8);
+  const labelText = `BS-${segmentIndex + 1}`;
+  const availableLengthMm = Math.max(2, stripLengthMm - 1.4);
+  const estimatedCharWidthFactor = 0.62;
+  const fontSizeMm = Math.min(
+    2.6,
+    Math.max(1.2, availableLengthMm / Math.max(1, labelText.length * estimatedCharWidthFactor))
+  );
+  const baselineY = Math.min(widthMm - 0.6, Math.max(1.1, fontSizeMm * 0.85));
+
   return buildPieceBase<BackingStripSpec>(
     {
       id: `backing-strip-${segmentIndex + 1}`,
       kind: 'backing_strip',
-      title: `背條 ${segmentIndex + 1}`,
+      title: `\u80cc\u689d ${segmentIndex + 1}`,
       segmentIndex,
       stripWidthMm: widthMm,
       stripLengthMm,
       assembly: {
         order: 40 + segmentIndex,
         segmentIndex,
-        note: '背條位於接縫內側。'
+        note: '\u80cc\u689d\u8cbc\u5728\u5c0d\u61c9\u63a5\u7e2b\u5167\u5074\u3002'
       }
     },
     {
@@ -39,12 +47,9 @@ function buildBackingStrip(segmentIndex: number, seamLengthMm: number, widthMm: 
       ],
       labels: [
         {
-          text: `BS-${segmentIndex + 1}`,
-          position: {
-            x: Math.max(1.2, stripLengthMm * 0.5 - labelWidthEstimateMm * 0.5),
-            y: Math.max(2.2, widthMm * 0.66)
-          },
-          fontSizeMm: Math.min(3, Math.max(2.2, widthMm * 0.38))
+          text: labelText,
+          position: { x: 0.7, y: baselineY },
+          fontSizeMm
         }
       ]
     }
@@ -55,7 +60,7 @@ export function buildTemplatePieces(spec: NoseConeSpec): TemplateProject {
   const errors = validateSpec(spec);
   const profile = sampleProfile(spec, spec.sampleCount);
   const segments = segmentProfile(profile, spec.segmentCount, 'equal_x');
-  const warnings = ['列印時請使用 100% 比例，先確認 20 mm 校正方塊。'];
+  const warnings = ['\u5217\u5370\u6642\u8acb\u4f7f\u7528 100% \u6bd4\u4f8b\uff0c\u5148\u78ba\u8a8d 20 mm \u6821\u6b63\u65b9\u584a\u3002'];
   const shrouds: ShroudPiece[] = [];
   const pieces: TemplatePiece[] = [];
 
@@ -65,7 +70,7 @@ export function buildTemplatePieces(spec: NoseConeSpec): TemplateProject {
       {
         id: `shroud-${index + 1}`,
         kind: 'shroud',
-        title: `外殼片段 ${index + 1}`,
+        title: `\u5916\u6bbc\u7247\u6bb5 ${index + 1}`,
         segmentIndex: index,
         sweepAngleRad: unfolded.sweepAngleRad,
         innerDevelopedRadiusMm: unfolded.innerDevelopedRadiusMm,
@@ -75,7 +80,7 @@ export function buildTemplatePieces(spec: NoseConeSpec): TemplateProject {
         assembly: {
           order: index + 1,
           segmentIndex: index,
-          note: `由尖端往基部組裝，第 ${index + 1} 段。`
+          note: `\u7531\u5c16\u7aef\u5f80\u57fa\u90e8\u7d44\u88dd\uff0c\u7b2c ${index + 1} \u6bb5\u3002`
         }
       },
       {
@@ -84,12 +89,16 @@ export function buildTemplatePieces(spec: NoseConeSpec): TemplateProject {
         labels: [
           {
             text: `S${index + 1}`,
-            position: { x: unfolded.bounds.width * 0.3, y: unfolded.bounds.height * 0.35 }
+            position: {
+              x: unfolded.bounds.minX + unfolded.bounds.width * 0.5,
+              y: unfolded.bounds.minY + unfolded.bounds.height * 0.5
+            }
           }
         ],
-        notes: index === 0 ? ['頂端片包含額外修剪導引。'] : []
+        notes: index === 0 ? ['\u5c16\u7aef\u5340\u6bb5\u542b\u4fee\u526a\u5c0e\u7dda\u3002'] : []
       }
     );
+
     shrouds.push(shroudPiece);
     pieces.push(shroudPiece);
 

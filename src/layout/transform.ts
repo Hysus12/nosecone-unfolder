@@ -17,6 +17,13 @@ function placementOffset(piece: TemplatePiece, item: LayoutItem): { dx: number; 
   };
 }
 
+function clampPointAxis(value: number, min: number, max: number): number {
+  if (min > max) {
+    return (min + max) * 0.5;
+  }
+  return Math.max(min, Math.min(max, value));
+}
+
 export function placePieceGeometry(piece: TemplatePiece, item: LayoutItem): PlacedPieceGeometry {
   const rotatedCut = piece.cutPaths.map((path) => rotatePath(path, item.rotationDeg));
   const rotatedGuide = piece.guidePaths.map((path) => rotatePath(path, item.rotationDeg));
@@ -32,5 +39,19 @@ export function placePieceGeometry(piece: TemplatePiece, item: LayoutItem): Plac
 
 export function placeLabelPoint(piece: TemplatePiece, item: LayoutItem, point: Point2D): Point2D {
   const { dx, dy } = placementOffset(piece, item);
-  return translatePoint(rotatePoint(point, item.rotationDeg), dx, dy);
+  const placed = translatePoint(rotatePoint(point, item.rotationDeg), dx, dy);
+
+  const rotatedCut = piece.cutPaths.map((path) => rotatePath(path, item.rotationDeg));
+  const translatedCut = rotatedCut.map((path) => translatePath(path, dx, dy));
+  const cutBounds = boundsFromPaths(translatedCut);
+  const paddingMm = 0.6;
+  const minX = cutBounds.width > paddingMm * 2 ? cutBounds.minX + paddingMm : cutBounds.minX;
+  const maxX = cutBounds.width > paddingMm * 2 ? cutBounds.maxX - paddingMm : cutBounds.maxX;
+  const minY = cutBounds.height > paddingMm * 2 ? cutBounds.minY + paddingMm : cutBounds.minY;
+  const maxY = cutBounds.height > paddingMm * 2 ? cutBounds.maxY - paddingMm : cutBounds.maxY;
+
+  return {
+    x: clampPointAxis(placed.x, minX, maxX),
+    y: clampPointAxis(placed.y, minY, maxY)
+  };
 }

@@ -3,6 +3,9 @@ import { buildTemplatePieces } from '../geometry/templates';
 import { layoutPages } from '../layout/pages';
 import { renderSvgPages } from '../export/svg';
 import { renderPdfFromLayout } from '../export/pdf';
+import { placeLabelPoint, placePieceGeometry } from '../layout/transform';
+import { boundsFromPaths } from '../utils/math';
+import { DEFAULT_SPEC } from '../app/defaults';
 import type { NoseConeSpec } from '../models/types';
 
 const GOLDEN_CONICAL: NoseConeSpec = {
@@ -42,6 +45,32 @@ describe('layout and export', () => {
         expect(overlap).toBe(false);
       }
     }
+  });
+
+  
+  it('keeps all label anchors inside each placed piece bounds for classroom default spec', () => {
+    const project = buildTemplatePieces(DEFAULT_SPEC);
+    const pages = layoutPages(project.pieces, { size: DEFAULT_SPEC.pageSize, marginMm: DEFAULT_SPEC.pageMarginMm });
+    const pieceMap = new Map(project.pieces.map((piece) => [piece.id, piece]));
+
+    pages.forEach((page) => {
+      page.items.forEach((item) => {
+        const piece = pieceMap.get(item.pieceId);
+        expect(piece).toBeDefined();
+        if (!piece) {
+          return;
+        }
+        const placed = placePieceGeometry(piece, item);
+        const cutBounds = boundsFromPaths(placed.cutPaths);
+        piece.labels.forEach((label) => {
+          const point = placeLabelPoint(piece, item, label.position);
+          expect(point.x).toBeGreaterThanOrEqual(cutBounds.minX - 1e-6);
+          expect(point.x).toBeLessThanOrEqual(cutBounds.maxX + 1e-6);
+          expect(point.y).toBeGreaterThanOrEqual(cutBounds.minY - 1e-6);
+          expect(point.y).toBeLessThanOrEqual(cutBounds.maxY + 1e-6);
+        });
+      });
+    });
   });
 
   it('renders valid SVG with calibration square', () => {
