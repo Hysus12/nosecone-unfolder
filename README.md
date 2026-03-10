@@ -28,9 +28,9 @@ An offline nose-cone/transition template tool (runs by opening `index.html` dire
 ## Photos
 The first three images are real build photos. The fourth image is the Newsletter 410 reference page.
 
-![Real build 1: segmented shell test](docs/images/01-real-build-segmented.jpg)
-![Real build 2: internal support structure](docs/images/02-real-build-ribs-discs.jpg)
 ![Real build 3: printed templates](docs/images/03-real-print-templates.jpg)
+![Real build 2: internal support structure](docs/images/02-real-build-ribs-discs.jpg)
+![Real build 1: segmented shell test](docs/images/01-real-build-segmented.jpg)
 ![Reference 4: Newsletter 410 page](docs/images/04-newsletter410-reference.jpg)
 
 For technical details, see [architecture.md](./architecture.md).
