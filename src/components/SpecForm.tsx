@@ -90,8 +90,8 @@ export function SpecForm({ spec, onChange, language }: SpecFormProps): JSX.Eleme
           <label>
             {text.seamStyle}
             <select value={spec.glueStyle} onChange={(event) => update('glueStyle', event.target.value as NoseConeSpec['glueStyle'])}>
-              <option value="butt_with_backing_strip">{language === 'en' ? 'Butt joint + backing strip' : '¹ï±µ + ­I±ø'}</option>
-              <option value="overlap_tab">{language === 'en' ? 'Overlap tab' : '­«Å|¶K¤ù'}</option>
+              <option value="butt_with_backing_strip">{language === 'en' ? 'Butt joint + backing strip' : 'å°æ¥ + èƒŒæ¢'}</option>
+              <option value="overlap_tab">{language === 'en' ? 'Overlap tab' : 'é‡ç–Šè²¼ç‰‡'}</option>
             </select>
           </label>
         </div>

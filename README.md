@@ -16,7 +16,19 @@ An offline nose-cone/transition template tool (runs by opening `index.html` dire
    - `npm install`
    - `npm run build`
    - `npm run offline-dist`
-3. Open `offline-dist/index.html`
+3. Open `offline-dist/index.html` or double-click `offline-dist/Start-App.bat`
+
+## Student one-click package (no Node.js on student laptops)
+For maintainers:
+1. Run `npm run release:win`
+2. Output folder: `release/windows/`
+3. Artifacts:
+   - `OpenRocketNoseconeUnfolder-offline-dist-<version>.zip`
+   - `OpenRocketNoseconeUnfolder-Setup-<version>.exe` (if Inno Setup 6 is installed)
+
+For students:
+- Download the `.zip` or `Setup.exe`
+- Extract/install and double-click `Start-App.bat`
 
 ## Basic workflow
 1. Load an example or enter parameters

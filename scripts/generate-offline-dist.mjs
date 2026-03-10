@@ -1,4 +1,4 @@
-ï»¿import { cpSync, existsSync, mkdirSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const root = process.cwd();
@@ -8,7 +8,7 @@ const readme = join(root, 'README-STUDENT.txt');
 const assetsDir = join(distDir, 'assets');
 
 if (!existsSync(distDir)) {
-  throw new Error('dist/ ä¸å­˜åœ¨ï¼Œè«‹å…ˆåŸ·è¡Œ npm run build');
+  throw new Error('dist/ ¤£¦s¦b¡A½Ğ¥ı°õ¦æ npm run build');
 }
 
 rmSync(outDir, { recursive: true, force: true });
@@ -26,7 +26,7 @@ const scriptSrc = topLevelScript ? `./${topLevelScript}` : assetJs ? `./assets/$
 const cssHref = assetCss ? `./assets/${assetCss}` : '';
 
 if (!scriptSrc) {
-  throw new Error('æ‰¾ä¸åˆ° build ç”¢å‡ºçš„ JavaScript æª”æ¡ˆ');
+  throw new Error('§ä¤£¨ì build ²£¥Xªº JavaScript ÀÉ®×');
 }
 
 const indexHtml = `<!doctype html>
@@ -43,6 +43,15 @@ const indexHtml = `<!doctype html>
   </body>
 </html>`;
 writeFileSync(join(outDir, 'index.html'), indexHtml, 'utf8');
+
+const launcherBat = [
+  '@echo off',
+  'setlocal',
+  'set "APP_DIR=%~dp0"',
+  'start "" "%APP_DIR%index.html"',
+  'exit /b 0'
+].join('\r\n');
+writeFileSync(join(outDir, 'Start-App.bat'), launcherBat, 'utf8');
 
 const audit = [
   'Release checklist:',
