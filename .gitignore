@@ -1,0 +1,7 @@
+node_modules/
+dist/
+offline-dist/
+.tools/
+tmp_probe/
+*.log
+codex_write_test.txt

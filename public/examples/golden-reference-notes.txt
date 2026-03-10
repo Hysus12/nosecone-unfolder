@@ -1,0 +1,7 @@
+﻿This fixture represents the segmented paper-template workflow derived from Newsletter410.pdf:
+- segmented shroud pieces, not one smooth unfold
+- polygonal ribs that follow the same segmentation
+- sectioned relieved support discs
+- butt joint with separate backing strips
+- tip trimming guide on the first segment
+- shoulder sleeve with offset internal disc
