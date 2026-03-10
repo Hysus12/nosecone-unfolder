@@ -27,7 +27,7 @@ export function OrkImportPanel({ orkResult, onImport, onApplyCandidate, language
       {orkResult ? (
         <div className="candidate-list">
           <p>
-            {text.orkProject}：{orkResult.projectName}
+            {text.orkProject}: {orkResult.projectName}
           </p>
           {orkResult.candidates.map((candidate) => (
             <button key={candidate.id} type="button" className="secondary" onClick={() => onApplyCandidate(candidate.spec as NoseConeSpec)}>
