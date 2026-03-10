@@ -24,6 +24,7 @@ Compress-Archive -Path (Join-Path $root "offline-dist\*") -DestinationPath $zipP
 
 $issPath = Join-Path $root "installer\windows\OpenRocketNoseconeOffline.iss"
 $isccCandidates = @(
+  "${env:LOCALAPPDATA}\Programs\Inno Setup 6\ISCC.exe",
   "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe",
   "${env:ProgramFiles}\Inno Setup 6\ISCC.exe"
 )
