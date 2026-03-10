@@ -1,28 +1,36 @@
 # openrocket-nosecone-unfolder-offline
 
-離線鼻錐/轉接段模板工具（可直接開 `index.html` 使用），參考 Apogee Newsletter 410：
+An offline nose-cone/transition template tool (runs by opening `index.html` directly), based on Apogee Newsletter 410:
 - https://www.apogeerockets.com/education/downloads/Newsletter410.pdf
 
-## 可以做什麼
-- 手動輸入鼻錐或轉接段參數，生成可列印模板
-- 匯入 OpenRocket `.ork`（瀏覽器端解析）
-- 產生外殼分段、背條、肋片、支撐片、肩部/套管（鼻錐）
-- 預覽版面並匯出 `SVG`、`PDF`、`ZIP`
-- 支援離線 `file://` 使用
+## What it does
+- Generate printable templates from manual nose-cone/transition parameters
+- Import OpenRocket `.ork` files (browser-side parsing)
+- Produce segmented shrouds, backing strips, ribs, support discs, and shoulder/coupler parts (nose cone)
+- Preview page layout and export `SVG`, `PDF`, and `ZIP`
+- Run fully offline with `file://`
 
-## 如何啟動
-1. 安裝 Node.js 18+
-2. 在專案根目錄執行：
+## Quick start
+1. Install Node.js 18+
+2. In project root, run:
    - `npm install`
    - `npm run build`
    - `npm run offline-dist`
-3. 開啟 `offline-dist/index.html`
+3. Open `offline-dist/index.html`
 
-## 簡單操作
-1. 開啟後先選範例或輸入參數
-2. 需要時匯入 `.ork`
-3. 檢查中間預覽與零件清單
-4. 按 `Export PDF` / `Export SVG` / `Export ZIP`
-5. 列印務必用 100% 比例，先量測 20 mm 校正方塊
+## Basic workflow
+1. Load an example or enter parameters
+2. Optionally import a `.ork` file
+3. Check preview and piece list
+4. Click `Export PDF`, `Export SVG`, or `Export ZIP`
+5. Print at 100% scale and verify the 20 mm calibration square before cutting
 
-更多技術細節請看 [architecture.md](./architecture.md)。
+## Photos
+The first three images are real build photos. The fourth image is the Newsletter 410 reference page.
+
+![Real build 1: segmented shell test](docs/images/01-real-build-segmented.jpg)
+![Real build 2: internal support structure](docs/images/02-real-build-ribs-discs.jpg)
+![Real build 3: printed templates](docs/images/03-real-print-templates.jpg)
+![Reference 4: Newsletter 410 page](docs/images/04-newsletter410-reference.jpg)
+
+For technical details, see [architecture.md](./architecture.md).
